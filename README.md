@@ -6,7 +6,7 @@
 
 ## Developer
 
-!!!Replace with your name!!!
+Rayman
 
 ## Example
 
