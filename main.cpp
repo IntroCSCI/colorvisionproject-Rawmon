@@ -21,9 +21,8 @@ int main()
  red = 0;
  char code;
  to_string(0);
-
+// make the function here???
  do{
- cout<<"As of this deliverable, only Red-Green color blindness (Protanopia) have been implimented.\n";
  cout<<"Don't use letters\n";
  cout<< "Enter a red value. (0-255)\n";
  cin>>red;
@@ -35,9 +34,9 @@ int main()
 
   //////////////////////////////////////////////////////////
   do{
-   cout<<"Enter type of color blindness. Type help for types of color blindness.(Red-Green only one available right now)\n";
+   cout<<"Enter type of color blindness. Type Help for types of color blindness.\n";
    cin>>type;
-   if (type == "help"){
+   if (type == "Help"){
      fileReader.open(type,ios::in);
      while(fileReader.eof() != true){
        getline(fileReader,list);
@@ -45,8 +44,16 @@ int main()
       }
    fileReader.close();
    } 
+   else if(type == "Description"){
+      fileReader.open(type,ios::in);
+     while(fileReader.eof() != true){
+       getline(fileReader,list);
+       cout<<list<<endl;
+      }
+   fileReader.close();
+   }
    
-  }while(type != "Red-Green");
+  }while((type != "Protanopia")&&(type != "Tritanopia")&&(type != "Deutanopia"));
  color = to_string(red)+" "+to_string(blue)+" "+to_string(green);
  //cout<<color<<endl;
 
