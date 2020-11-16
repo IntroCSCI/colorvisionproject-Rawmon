@@ -2,7 +2,7 @@
 #include <fstream>
 #include "libraries/bitmap.h"
 using namespace std;
-
+void fileOpener(string);
 int main()
 {
  int red;
@@ -21,7 +21,7 @@ int main()
  red = 0;
  char code;
  to_string(0);
-// make the function here???
+ // make the function here???
  do{
  cout<<"Don't use letters\n";
  cout<< "Enter a red value. (0-255)\n";
@@ -30,34 +30,20 @@ int main()
  cin>>green;
  cout<< "Enter a blue value. (0-255)\n";
  cin>>blue;
- }while ((red < 0 && 255 < red) && (green < 0 && 255 < green) && (blue < 0 && 255 < blue) );
+ }while ((red < 0 && 255 < red) && (green < 0 && 255 < green) && (blue < 0 && 255 < blue));
 
   //////////////////////////////////////////////////////////
   do{
    cout<<"Enter type of color blindness. Type Help for types of color blindness.\n";
    cin>>type;
-   if (type == "Help"){
-     fileReader.open(type,ios::in);
-     while(fileReader.eof() != true){
-       getline(fileReader,list);
-       cout<<list<<endl;
-      }
-   fileReader.close();
-   } 
-   else if(type == "Description"){
-      fileReader.open(type,ios::in);
-     while(fileReader.eof() != true){
-       getline(fileReader,list);
-       cout<<list<<endl;
-      }
-   fileReader.close();
+   if((type == "Help")||(type == "Description")){
+   fileOpener(type);
    }
-   
   }while((type != "Protanopia")&&(type != "Tritanopia")&&(type != "Deutanopia"));
- color = to_string(red)+" "+to_string(blue)+" "+to_string(green);
+ color = to_string(red)+" "+to_string(green)+" "+to_string(blue);
  //cout<<color<<endl;
 
-  //cout<< "Your RGB value:     Red-Green Color blindness value:\n";
+cout<< "Your RGB value:     Blindness value:\n";
  fileReader.open(type,ios::in);
 
  while (fileReader.eof()!=true){
@@ -66,5 +52,16 @@ int main()
      cout<<text<<endl;
    } 
  }
+ fileReader.close();
 return 0;
+}
+void fileOpener(string fileType){
+  string list;
+  fstream fileReader;
+  fileReader.open(fileType,ios::in);
+  while(fileReader.eof() != true){
+    getline(fileReader,list);
+    cout<<list<<endl;
+  }
+  fileReader.close();
 }
