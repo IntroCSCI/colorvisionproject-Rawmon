@@ -1,11 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include "libraries/bitmap.h"
+#include "color.h"
 using namespace std;
 ///////Functions///////////
 void RGBvalues(int&,int&,int&);
-void fileOpener(string);
-void ColorConditions(string,string);
+//void fileOpener(string);
+//void ColorConditions(string,string);
 vector<string> SVGFileScanner(string);
 /////////////////////////////
 int main()
@@ -26,6 +27,7 @@ int main()
  /////////////////////////////
  cout<<"Are you using a SVG file or manually inputing the RGB values? (SVG or RGB)\n";
  cin>>SVGorRGB;
+ // This If statement will open the user inputted SVG file and convert the hexadecimal value into RGB values
  if (SVGorRGB == "SVG"){
    cout<<"Input SVG File Name\n";
    cin>>type;
@@ -40,6 +42,7 @@ int main()
       blue = strtol (HexBlue.c_str(),NULL,16);
    }
  }
+ //This Else if will ask the user for RGB values, Any help, and for what type of color blindness
  else if (SVGorRGB == "RGB"){
     cout<<"Don't use letters\n";
     RGBvalues(red,green,blue);
@@ -48,18 +51,19 @@ int main()
     cout<<"Enter type of color blindness. Type Help for types of color blindness.\n";
     cin>>type;
     if((type == "Help")||(type == "Description")){
-      fileOpener(type);
+      color fileOpener(type);
     }
   } while((type != "Protanopia")&&(type != "Tritanopia")&&(type != "Deutanopia"));
+ //Makes the users RGB values into a string for the next function to search for.
  color = to_string(red)+" "+to_string(green)+" "+to_string(blue);
- //cout<<color<<endl;//// For Testing Purposes
- ColorConditions(type,color);
- //cout<< "Your RGB value:     Blindness value:\n";//Maybe?
+ //cout<<color<<endl;//(For Testing Purposes)
+ color ColorConditions(type,color);
  fileReader.close();
  return 0;
 }
 /////Function Definitions//////////////
-void fileOpener(string fileType){
+//Opens the user inputed files
+/*void fileOpener(string fileType){
   string list;
   fstream fileReader;
   fileReader.open(fileType,ios::in);
@@ -68,7 +72,8 @@ void fileOpener(string fileType){
     cout<<list<<endl;
   }
   fileReader.close();
-}
+}*/
+//Asks user for RGB values
 void RGBvalues(int& Red, int& Green, int& Blue){
   do{
    cout<< "Enter a red value. (0-255)\n";
@@ -80,7 +85,7 @@ void RGBvalues(int& Red, int& Green, int& Blue){
   }while ((Blue < 0 || 255 < Blue)||(Green < 0 || 255 < Green)||((Red < 0) || (Red > 255)));
 }
 //Searches for the corresponding RGB values
-void ColorConditions(string fileType, string RGB){
+/*void ColorConditions(string fileType, string RGB){
  string list;
  int index = 0;
  fstream fileReader;
@@ -90,12 +95,10 @@ void ColorConditions(string fileType, string RGB){
     if(list.find(RGB) != string::npos){
       cout<<list<<endl;
     } 
-    /*for(int index <= 1; index++){
-      cout<<"This color is not affected by "<<fileType<< " colorblindess.\n";
-    }*///In case the user doesn't get anything
   }
   fileReader.close();
-}
+}*/
+//Searches the user inputted SVG file for the Hexadecimal value
 vector<string> SVGFileScanner(string fileType){
   string list;
   vector <string> Hexa;
