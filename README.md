@@ -72,3 +72,6 @@ Functions were used to simplify and make the program run much more smoothly and 
 ## Vectors & Arrays
 
 Vectors were used to be able to efficiently store and convert the Hexidecimal from the SVG File into RGB values to proccess them.
+## Classes
+
+Classes were used to be able to make the program more easy to understand by minimizing the space taken by repetative functions.
